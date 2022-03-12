@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         
     }
  
-//PASO 1: metodo agregarWeb()
+//PASO 1: metodo agregarWeb() --> mostrar siitos al iniciar la App
     
 	private void agregarWeb() {
 		// TODO Auto-generated method stub
