@@ -69,19 +69,8 @@ public class MainActivity extends Activity {
     	//ArrayAdapter --> relacionamos con el ListView	
         adaptador1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista1);
     	lv1.setAdapter(adaptador1);
-
-//PASO 1-B: Mostra lista de Web al iniciar la APP
-    	
-    //	Intent intento1=new Intent (Intent.ACTION_VIEW);
-		//startActivity(intento1);/*Funciona pero muestra cosas al iniciar que no deberia*/
-    	
-        /*     Esto tambien funciona pero hace lo mismo:
-        Intent intento1=new Intent (Intent.ACTION_VIEW);
-    	File web = new File (getExternalFilesDir(null), et1.getText().toString());
-    	intento1.putExtra(Intent.ACTION_VIEW, Uri.fromFile(web));
-		startActivity(intento1);        */
 		
-//PASO 1-C: capturar Click
+//PASO 1-B: capturar Click
 		
 		//Capturar Click para ir a la WEB
 		//lv1.setOnItemClickListener(new OnItemClickListener(){}); --> para poder importar
@@ -133,7 +122,7 @@ public class MainActivity extends Activity {
 
 	}
 	
-	/*PASO 3: boton borrar */
+/*PASO 3: boton borrar */
 	public void borrar (View view)
 	{
 		 //En el Nombre de la clase de la Tabla me confundi la "O" por la "Q"
@@ -165,7 +154,7 @@ public class MainActivity extends Activity {
 	  	
 	}
 	
-	/**/
+/*SALIR de la App*/
 	public void salir(View v)
 	{
 		finish();
