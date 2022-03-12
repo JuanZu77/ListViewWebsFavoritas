@@ -81,8 +81,8 @@ public class MainActivity extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				
-                /*Recordar arg2 tiene la posiciones del Item seleccionado*/
-				/*Recordamos con un Toast para que muestra la posicion*/
+                /*arg2 tiene la posiciones del Item seleccionado*/
+				/*el Toast para mostrar la posicion*/
 				
 				Toast.makeText(MainActivity.this, lista1.get(arg2), Toast.LENGTH_LONG).show();
 				/*MainActivity.this, --> debemos aclarar a que clase hacemos la referncia*/
@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
 //PASO 2: boton agregar *
 	public void agregar(View v)
 	{
-	   //En el Nombre de la clase de la Tabla me confundi la "O" por la "Q"
+	   //Juan: recorda que es "O" por la "Q" en el Nombre de la clase Tabla
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
 		
 		SQLiteDatabase bd = admin.getWritableDatabase();  //devuelve referencia de "base1"
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 /*PASO 3: boton borrar */
 	public void borrar (View view)
 	{
-		 //En el Nombre de la clase de la Tabla me confundi la "O" por la "Q"
+		 //En el Nombre de la clase Tabla es la "O" por la "Q"
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
    	 
 		SQLiteDatabase bd = admin.getWritableDatabase();
@@ -136,7 +136,7 @@ public class MainActivity extends Activity {
     	{
     		int cant = bd.delete("web", "descripcion='"+descripcion+"'", null);
     		
-    		//Esto Actualiza EL ListView
+    		//actualizar ListView
             String sitio=et1.getText().toString();    	  
         	lista1.remove(sitio);
          	adaptador1.notifyDataSetChanged();   
