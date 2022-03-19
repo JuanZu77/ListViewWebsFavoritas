@@ -1,6 +1,6 @@
 # ListViewWebsFavoritas
 
-Es una App móvil de acceso rápido a sitos web de uso diario y/o favoritas desarrollada 100% en Java.
+Es una App móvil de acceso rápido a sitos web de uso diario y/o favoritos desarrollada 100% en Java.
 Pensada para buscadores, diarios digitales, tiendas, apps, etc.
 
 En esta app podemos:
