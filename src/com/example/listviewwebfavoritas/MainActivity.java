@@ -1,6 +1,5 @@
 package com.example.listviewwebfavoritas;
 
-
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -26,7 +25,6 @@ public class MainActivity extends Activity {
 	ArrayList<String>lista1;
 	ArrayAdapter<String>adaptador1;
 	
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +32,8 @@ public class MainActivity extends Activity {
              
         et1=(EditText)findViewById(R.id.editText1);
         lv1=(ListView)findViewById(R.id.listView1);
-        
-        agregarWeb(); 
-        
+       
+        agregarWeb();      
     }
  
 //PASO 1: agregarWeb() 
@@ -54,15 +51,12 @@ public class MainActivity extends Activity {
     	
     	//Recuperar Datos
     	Cursor registro=bd.rawQuery("select descripcion from web", null);
-    	
-    	//While para recorrer y se repite mientras encuentre datos
-    	
+    	    	
     	while (registro.moveToNext())
     	{
     		//movetoFirt --> se ubica en la primera fila encontrada. No hay lugar para traer otro dato (EditText)
     		//movetoNext --> para que dentro del While vaya avanzando el puntero y leer/traer fila por fila
-    		lista1.add(registro.getString(0));
-    		   		
+    		lista1.add(registro.getString(0)); 		   		
     	}
     	
     	//ArrayAdapter --> relacionamos con el ListView	
@@ -80,10 +74,7 @@ public class MainActivity extends Activity {
 					long arg3) {
 				
 				Toast.makeText(MainActivity.this, lista1.get(arg2), Toast.LENGTH_LONG).show();
-				/*MainActivity.this, --> debemos aclarar a que clase hacemos la referncia*/
-				//lista1 ahora le agregamos el metodo get() para mostrar el item seleccionado --> lista1.get(arg2)
-								
-				/*Ahora al seleccionar un item ir a la web con la clase Intent*/
+				
 				Intent intento1=new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+lista1.get(arg2)));
 				startActivity(intento1);			
 			}});
@@ -92,8 +83,7 @@ public class MainActivity extends Activity {
 //PASO 2: boton agregar *
 	public void agregar(View v)
 	{
-		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
-		
+		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);	
 		SQLiteDatabase bd = admin.getWritableDatabase();  //devuelve referencia de "base1"
     	
     	//PASAR DATOS
@@ -140,7 +130,7 @@ public class MainActivity extends Activity {
 	  	
 	}
 	
-/*SALIR de la App*/
+/* SALIR */
 	public void salir(View v)
 	{
 		finish();
