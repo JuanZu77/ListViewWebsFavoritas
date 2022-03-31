@@ -31,21 +31,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        
+             
         et1=(EditText)findViewById(R.id.editText1);
         lv1=(ListView)findViewById(R.id.listView1);
         
-        agregarWeb(); //metodo de inicio de la APP
+        agregarWeb(); 
         
     }
  
-//PASO 1: metodo agregarWeb() --> mostrar siitos al iniciar la App
+//PASO 1: agregarWeb() 
     
 	private void agregarWeb() {
 		// TODO Auto-generated method stub
 		
-//PASO 1-A: Array List y Traer "table web" de la clase AdminSOLiteOpenHelper 
+//PASO 1-A: Array List 
 		
 		//ArrayList --> creamos una lista
 		lista1 = new ArrayList<String>();
@@ -79,10 +78,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
-				
-                /*arg2 tiene la posiciones del Item seleccionado*/
-				/*el Toast para mostrar la posicion*/
 				
 				Toast.makeText(MainActivity.this, lista1.get(arg2), Toast.LENGTH_LONG).show();
 				/*MainActivity.this, --> debemos aclarar a que clase hacemos la referncia*/
@@ -90,54 +85,45 @@ public class MainActivity extends Activity {
 								
 				/*Ahora al seleccionar un item ir a la web con la clase Intent*/
 				Intent intento1=new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+lista1.get(arg2)));
-				startActivity(intento1);
-				
+				startActivity(intento1);			
 			}});
-		
 	}
 	
 //PASO 2: boton agregar *
 	public void agregar(View v)
 	{
-	   //Juan: recorda que es "O" por la "Q" en el Nombre de la clase Tabla
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
 		
 		SQLiteDatabase bd = admin.getWritableDatabase();  //devuelve referencia de "base1"
     	
-    	//Ahora PASAR DATOS
+    	//PASAR DATOS
     	ContentValues registro= new ContentValues();
-    	registro.put("descripcion", et1.getText().toString());
-    	    	
-    	bd.insert("web", null, registro);
-    	//Insert en la tabla "articulos" y registramos (el null porque no se usa ese parametro)
-    	
+    	registro.put("descripcion", et1.getText().toString());    	    	
+    	bd.insert("web", null, registro);    	
+		
     	String sitio=et1.getText().toString();  
     	lista1.add(sitio);
     	adaptador1.notifyDataSetChanged();   
     	et1.setText("");
     	
-    	Toast.makeText(this, "Se almaceno la Web", Toast.LENGTH_LONG).show();
-    	
+    	Toast.makeText(this, "Se almaceno la Web", Toast.LENGTH_LONG).show();   	
     	bd.close(); //liberar base de datos
-
 	}
 	
 /*PASO 3: boton borrar */
 	public void borrar (View view)
 	{
 		 //En el Nombre de la clase Tabla es la "O" por la "Q"
-		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
-   	 
+		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1); 	 
 		SQLiteDatabase bd = admin.getWritableDatabase();
 		
-        String descripcion = et1.getText().toString();
-    	
+        String descripcion = et1.getText().toString();	
     	if (descripcion.length()>0)
     	{
     		int cant = bd.delete("web", "descripcion='"+descripcion+"'", null);
     		
-    		//actualizar ListView
-            String sitio=et1.getText().toString();    	  
+    		//actualizar 
+                String sitio=et1.getText().toString();    	  
         	lista1.remove(sitio);
          	adaptador1.notifyDataSetChanged();   
     		
