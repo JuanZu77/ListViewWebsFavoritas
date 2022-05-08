@@ -36,37 +36,25 @@ public class MainActivity extends Activity {
         agregarWeb();      
     }
  
-//PASO 1: agregarWeb() 
     
 	private void agregarWeb() {
 		// TODO Auto-generated method stub
 		
-//PASO 1-A: Array List 
-		
-		//ArrayList --> creamos una lista
 		lista1 = new ArrayList<String>();
 		
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);
 		SQLiteDatabase bd=admin.getWritableDatabase();
     	
-    	//Recuperar Datos
     	Cursor registro=bd.rawQuery("select descripcion from web", null);
     	    	
     	while (registro.moveToNext())
     	{
-    		//movetoFirt --> se ubica en la primera fila encontrada. No hay lugar para traer otro dato (EditText)
-    		//movetoNext --> para que dentro del While vaya avanzando el puntero y leer/traer fila por fila
     		lista1.add(registro.getString(0)); 		   		
     	}
     	
-    	//ArrayAdapter --> relacionamos con el ListView	
         adaptador1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista1);
     	lv1.setAdapter(adaptador1);
 		
-//PASO 1-B: capturar Click
-		
-		//Capturar Click para ir a la WEB
-		//lv1.setOnItemClickListener(new OnItemClickListener(){}); --> para poder importar
 		lv1.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
@@ -80,13 +68,12 @@ public class MainActivity extends Activity {
 			}});
 	}
 	
-//PASO 2: boton agregar *
+
 	public void agregar(View v)
 	{
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);	
 		SQLiteDatabase bd = admin.getWritableDatabase();  //devuelve referencia de "base1"
     	
-    	//PASAR DATOS
     	ContentValues registro= new ContentValues();
     	registro.put("descripcion", et1.getText().toString());    	    	
     	bd.insert("web", null, registro);    	
@@ -97,10 +84,11 @@ public class MainActivity extends Activity {
     	et1.setText("");
     	
     	Toast.makeText(this, "Se almaceno la Web", Toast.LENGTH_LONG).show();   	
-    	bd.close(); //liberar base de datos
+    	bd.close(); 
 	}
 	
-/*PASO 3: boton borrar */
+
+	
 	public void borrar (View view)
 	{
 		 //En el Nombre de la clase Tabla es la "O" por la "Q"
@@ -130,7 +118,7 @@ public class MainActivity extends Activity {
 	  	
 	}
 	
-/* SALIR */
+
 	public void salir(View v)
 	{
 		finish();
