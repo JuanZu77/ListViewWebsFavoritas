@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
 	public void agregar(View v)
 	{
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1);	
-		SQLiteDatabase bd = admin.getWritableDatabase();  //devuelve referencia de "base1"
+		SQLiteDatabase bd = admin.getWritableDatabase();  
     	
     	ContentValues registro= new ContentValues();
     	registro.put("descripcion", et1.getText().toString());    	    	
