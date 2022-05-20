@@ -75,23 +75,31 @@ public class MainActivity extends Activity {
 		SQLiteDatabase bd = admin.getWritableDatabase();  
     	
     	ContentValues registro= new ContentValues();
-    	registro.put("descripcion", et1.getText().toString());    	    	
-    	bd.insert("web", null, registro);    	
+    	registro.put("descripcion", et1.getText().toString());    
 		
-    	String sitio=et1.getText().toString();  
-    	lista1.add(sitio);
-    	adaptador1.notifyDataSetChanged();   
-    	et1.setText("");
+		String sitio=et1.getText().toString();  
     	
-    	Toast.makeText(this, "Se almaceno la Web", Toast.LENGTH_LONG).show();   	
-    	bd.close(); 
+    	if (sitio.length()>5) 
+    	{
+    		int cant = (int) bd.insert("web", null, registro);
+    		
+        	if(cant>0){
+        		lista1.add(sitio);
+            	adaptador1.notifyDataSetChanged();   
+            	et1.setText("");
+    			Toast.makeText(this, "Se Agrego el sitio web", Toast.LENGTH_LONG).show();
+    		  	bd.close(); //liberar base de datos
+    		    }        	
+    	}
+    	else
+    	   {
+    		Toast.makeText(this, "Minimo 6 caracteres, ejemplo: jvz.com", Toast.LENGTH_LONG).show();
+    	   }
 	}
 	
 
-	
 	public void borrar (View view)
 	{
-		 //En el Nombre de la clase Tabla es la "O" por la "Q"
 		AdminSOLiteOpenHelper admin=new AdminSOLiteOpenHelper(this, "base1", null, 1); 	 
 		SQLiteDatabase bd = admin.getWritableDatabase();
 		
@@ -100,7 +108,6 @@ public class MainActivity extends Activity {
     	{
     		int cant = bd.delete("web", "descripcion='"+descripcion+"'", null);
     		
-    		//actualizar 
                 String sitio=et1.getText().toString();    	  
         	lista1.remove(sitio);
          	adaptador1.notifyDataSetChanged();   
